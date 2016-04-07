@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+<title>pg_contacts</title>
+
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/style.css">
+
+<script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?libraries=places'></script>
+
+<script src="js/libs/angular.js"></script>
+<script src="js/libs/angular-route.js"></script>
+<script src="js/libs/angular-ui-router.js"></script>
+<script src="js/libs/ocLazyLoad.js"></script>
+<script src="js/libs/ui-bootstrap.js"></script>
+<script src="js/libs/firebase.js"></script>
+<script src="js/libs/angularfire.min.js"></script>
+<script src="js/libs/xeditable.js"></script>
+
+<script src='js/ngAutocomplete-master/src/ngAutocomplete.js'></script>
+<script src="view2.js"></script>
+</head>
+
+<body>
+<div class="container"  ng-controller='view1Ctrl'>
+  <div class="row">
+    <div class="col-md-4">
+	  <h3> Add Contact</h3>
+	  <form ng-submit="addForm()">
+	    <div class="form-group">
+		  <label for="firstname">First Name</label>
+		  <input type="text" class="form-contol" id="firstname" placeholder="Enter First Name" ng-model="frm.firstname">
+		</div>
+		<div class="form-group">
+		  <label for="lastname">Last Name</label>
+		  <input type="text" class="form-contol" id="lastname" placeholder="Enter Last Name" ng-model="frm.lastname">
+		</div>
+		<div class='form-group'>
+		  <label for='address'>Address</label>
+		  <input type="text" class='form-control addressBox' id='address' ng-model="frm.address" placeholder='Enter address' ng-autocomplete options="mapOptions" details="details">
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+    <br>
+	  <h3> Edit Contact</h3>
+	  <form ng-submit="editForm()">
+	    <div class="form-group">
+		  <label for="firstname">First Name</label>
+		  <input type="text" class="form-contol" id="firstname" placeholder="Enter First Name" ng-model="frmEdit.firstname">
+		</div>
+		<div class="form-group">
+		  <label for="lastname">Last Name</label>
+		  <input type="text" class="form-contol" id="lastname" placeholder="Enter Last Name" ng-model="frmEdit.lastname">
+		</div>
+		<div class='form-group'>
+		  <label for='address'>Address</label>
+		  <input type="text" class='form-control addressBox' id='address' ng-model="frmEdit.address" placeholder='Enter address' ng-autocomplete options="mapOptions" details="details">
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+	<div class="col-md-8">
+	  <h3> View Contacts</h3>
+	  <div class="table-responsive">
+	    <table class="table table-bordered">
+		  <thead>
+		    <tr>
+			  
+			  <th>First Name</th>
+			  <th>Last Name</th>
+			  <th>Address</th>
+			  <th>Edit</th>
+			  <th>Delete</th>
+			</tr>
+          </thead>
+		  <tbody>
+		    <tr ng-repeat="item in records">
+			  
+			  <td>{{item.firstname}}</td>
+			  <td>{{item.lastname}}</td>
+			  <td>{{item.address}}</td>
+			  <td><a href="" ng-click="editLink(item)">Edit</a></td>
+			  <td><a href="" ng-click="delecteLink(item)">Delete</a></td>
+			</tr>
+          </tbody>
+      </div>
+	</div>
+	
+  </div>
+
+
+
+
+</div>
+
+</body>
